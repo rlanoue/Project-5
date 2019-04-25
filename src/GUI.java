@@ -1,5 +1,6 @@
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -66,11 +67,11 @@ public class GUI extends JFrame implements ActionListener{
 		hD = new JTextArea(1, 10);
 
 		slider = new JSlider(0, 4, 2); 
+		slider.setMajorTickSpacing(1);
 		slider.setPaintTrack(true);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
-		slider.setMajorTickSpacing(10);
-		slider.setMinorTickSpacing(1);
+		
 		//ActionListener sliding = new NewFrame(); 
 		//slider.addMouseListener(sliding);
 		text2 = new JLabel("" + slider.getValue()); 
@@ -92,7 +93,7 @@ public class GUI extends JFrame implements ActionListener{
 
 		//JList 
 
-		frame.setLayout(new GridBagLayout());
+		frame.setLayout(new GridLayout());
 
 		Object[] alphaStations = guiTreeSet.toArray();
 
