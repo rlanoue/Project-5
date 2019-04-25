@@ -1,6 +1,9 @@
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -46,19 +49,31 @@ public class GUI extends JFrame implements ActionListener{
 	static JLabel text5; 
 	static JComboBox<String> cBox1; 	
 
+	static JLabel l0; 
+	static JTextField d0; 
+	static JLabel l1;
+	static JTextField d1; 
+	static JLabel l2;
+	static JTextField d2; 
+	static JLabel l3;
+	static JTextField d3; 
+	static JLabel l4; 
+	static JTextField d4; 
+
+
 	public static void main(String[] args) throws IOException
 	{
 		HammingDistance ob = new HammingDistance(); 
-		
+
 		ob.read("Mesonet.txt");
-		
+
 		TreeSet<String> guiTreeSet = new TreeSet<String>(); 
 		guiTreeSet = ob.getTreeSet(); 
 
 		frame = new JFrame("Panel"); 
 		JPanel p1 = new JPanel(); 
 		//JPanel p1 = new JPanel(); 
-		
+
 		//p1.setSize(100, 20);
 
 		text1 = new JLabel("Enter Hamming Distance"); 
@@ -70,8 +85,8 @@ public class GUI extends JFrame implements ActionListener{
 		slider.setPaintTrack(true);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
-		
-	//	ActionListener sliding = new NewFrame(); 
+
+		//	ActionListener sliding = new NewFrame(); 
 		//slider.addActionListener(sliding);
 		text2 = new JLabel("" + slider.getValue()); 
 
@@ -91,13 +106,27 @@ public class GUI extends JFrame implements ActionListener{
 		textField2 = new JTextField(4); 
 
 		//JList 
-		frame.setLayout(new GridLayout(4, 2));
+		frame.setLayout(new GridLayout(0, 2));
+		p1.setLayout(new GridLayout(0, 2));
 
 		Object[] alphaStations = guiTreeSet.toArray();
 
 		cBox1 = new JComboBox(alphaStations); 
 
-		text5 = new JLabel("Compre w/ new"); 
+		text5 = new JLabel("Compre w/ new");
+
+		l0 = new JLabel("Distance 0");  
+		d0 = new JTextField();  
+		l1  = new JLabel("Distance 1");  
+		d1 = new JTextField();  
+		l2  = new JLabel("Distance 2");  
+		d2 = new JTextField();  
+		l3  = new JLabel("Distance 3");  
+		d3 = new JTextField();
+		l4  = new JLabel("Distance 4");  
+		d4 = new JTextField();  
+
+
 
 		//p.add(p1); 
 		p1.add(text1); 
@@ -113,7 +142,17 @@ public class GUI extends JFrame implements ActionListener{
 		p1.add(button3);
 		p1.add(textField2);
 		p1.add(cBox1); 
-		p1.add(text5); 
+		p1.add(text5);
+		p1.add(l0); 
+		p1.add(d0);
+		p1.add(l1); 
+		p1.add(d1); 
+		p1.add(l2); 
+		p1.add(d2); 
+		p1.add(l3); 
+		p1.add(d3); 
+		p1.add(l4); 
+		p1.add(d4); 
 
 		frame.add(p1); 
 		frame.setSize(600, 800);
@@ -128,7 +167,5 @@ public class GUI extends JFrame implements ActionListener{
 		if (s.contentEquals("HERE")) {
 			text3.setText(entry.getText());
 		}
-
 	}
-
 }
