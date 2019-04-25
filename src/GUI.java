@@ -1,7 +1,11 @@
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
@@ -70,34 +74,45 @@ public class GUI extends JFrame implements ActionListener{
 		TreeSet<String> guiTreeSet = new TreeSet<String>(); 
 		guiTreeSet = ob.getTreeSet(); 
 
-		frame = new JFrame("Panel"); 
+
+		frame = new JFrame("Panel");
+		JPanel p0 = new JPanel(); 
 		JPanel p1 = new JPanel(); 
+		JPanel p2 = new JPanel(); 
+		JPanel p3 = new JPanel(); 
+		JPanel p4 = new JPanel(); 
+		JPanel p5 = new JPanel(); 
+		JPanel p6 = new JPanel(); 
+		JPanel p7 = new JPanel(); 
+
 		//JPanel p1 = new JPanel(); 
 
 		//p1.setSize(100, 20);
-
-		text1 = new JLabel("Enter Hamming Distance"); 
-		textField1 = new JTextField(4);
-		hD = new JTextArea(1, 10);
-
 		slider = new JSlider(0, 4, 2); 
 		slider.setMajorTickSpacing(1);
 		slider.setPaintTrack(true);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 
-		//	ActionListener sliding = new NewFrame(); 
+		//ActionListener sliding = new NewFrame(); 
 		//slider.addActionListener(sliding);
-		text2 = new JLabel("" + slider.getValue()); 
+		text1 = new JLabel("Enter Hamming Distance" + slider.getValue()); 
+		textField1 = new JTextField(4);
+		textField1.setEditable(true);
+		hD = new JTextArea(1, 10);
+
+		//text2 = new JLabel("" + slider.getValue()); 
 
 		button1 = new JButton("Show Station"); 
 		//ActionListener textEntry = new NewFrame(); 
 		//button1.addActionListener(textEntry);
 		entry = new JTextArea(20, 15); 
+		entry.setEditable(false);
 
 		button2 = new JButton("Calculate HD"); 
 
 		text3 = new JLabel("Compare with:"); 
+		//text3.setSize(20, 20);
 
 		text4 = new JLabel("REPLACE ME WITH STATION NAME"); 
 		button3 = new JButton("Add Station"); 
@@ -107,11 +122,20 @@ public class GUI extends JFrame implements ActionListener{
 
 		//JList 
 		frame.setLayout(new GridLayout(0, 2));
+		p0.setLayout(new GridLayout(6, 0));
+
 		p1.setLayout(new GridLayout(0, 2));
+		p2.setLayout(new GridLayout());
+		p3.setLayout(new GridLayout());
+		p4.setLayout(new GridLayout());
+		p5.setLayout(new GridLayout());
+		p6.setLayout(new GridLayout());
+		p7.setLayout(new GridLayout(2, 0));
 
 		Object[] alphaStations = guiTreeSet.toArray();
 
 		cBox1 = new JComboBox(alphaStations); 
+		cBox1.setSize(20, 20);
 
 		text5 = new JLabel("Compre w/ new");
 
@@ -126,35 +150,41 @@ public class GUI extends JFrame implements ActionListener{
 		l4  = new JLabel("Distance 4");  
 		d4 = new JTextField();  
 
-
-
-		//p.add(p1); 
 		p1.add(text1); 
 		p1.add(textField1); 
-		p1.add(slider); 
-		p1.add(text2); 
-		p1.add(button1); 
-		p1.add(entry); 
-		p1.add(hD); 
-		p1.add(button2);
-		p1.add(text3);
-		p1.add(text4); 
-		p1.add(button3);
-		p1.add(textField2);
-		p1.add(cBox1); 
-		p1.add(text5);
-		p1.add(l0); 
-		p1.add(d0);
-		p1.add(l1); 
-		p1.add(d1); 
-		p1.add(l2); 
-		p1.add(d2); 
-		p1.add(l3); 
-		p1.add(d3); 
-		p1.add(l4); 
-		p1.add(d4); 
+		p2.add(slider); 
+		//p2.add(text2); 
+		p3.add(button1); 
+		p4.add(entry); 
+		//p6.add(hD); 
+		p6.add(button2);
+		p5.add(text3);
+		//p7.add(text4); 
+		//p7.add(button3);
+		//p7.add(textField2);
+		p5.add(cBox1); 
+		//p7.add(text5);
+		p7.add(l0); 
+		p7.add(d0);
+		p7.add(l1); 
+		p7.add(d1); 
+//		p7.add(l2); 
+//		p7.add(d2); 
+//		p7.add(l3); 
+//		p7.add(d3); 
+//		p7.add(l4); 
+//		p7.add(d4); 
 
-		frame.add(p1); 
+		p0.add(p1); 
+		p0.add(p2);
+		p0.add(p3); 
+		p0.add(p4); 
+		p0.add(p5); 
+		p0.add(p6); 
+		p0.add(p7); 
+
+		frame.add(p0);
+		//frame.add(p2); 
 		frame.setSize(600, 800);
 		frame.setVisible(true);
 
