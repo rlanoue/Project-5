@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.util.TreeSet;
 
 public class HammingDistance {
-	
+
 	static TreeSet<String> treeStation = new TreeSet<String>(); 
-	
+
 	public static void main(String[] args) {
-		
-		//treeStation = new TreeSet<String>();
+
 	}
-	
+
 	public void read(String filename) throws IOException 
 	{
 		BufferedReader file = new BufferedReader(new FileReader(filename)); //Mesonet.csv
@@ -26,10 +25,9 @@ public class HammingDistance {
 
 		file.close(); 
 	}
-	
+
 	public TreeSet<String> getTreeSet() {
 		return treeStation;
-		
-	}
 
+	}
 }
