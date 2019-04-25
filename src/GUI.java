@@ -44,11 +44,7 @@ public class GUI extends JFrame implements ActionListener{
 	static JTextField textField2; 
 
 	static JLabel text5; 
-	static JComboBox<String> cBox1; 
-
-	 
-
-	
+	static JComboBox<String> cBox1; 	
 
 	public static void main(String[] args) throws IOException
 	{
@@ -60,7 +56,10 @@ public class GUI extends JFrame implements ActionListener{
 		guiTreeSet = ob.getTreeSet(); 
 
 		frame = new JFrame("Panel"); 
-		JPanel p = new JPanel(); 
+		JPanel p1 = new JPanel(); 
+		//JPanel p1 = new JPanel(); 
+		
+		//p1.setSize(100, 20);
 
 		text1 = new JLabel("Enter Hamming Distance"); 
 		textField1 = new JTextField(4);
@@ -72,8 +71,8 @@ public class GUI extends JFrame implements ActionListener{
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 		
-		//ActionListener sliding = new NewFrame(); 
-		//slider.addMouseListener(sliding);
+	//	ActionListener sliding = new NewFrame(); 
+		//slider.addActionListener(sliding);
 		text2 = new JLabel("" + slider.getValue()); 
 
 		button1 = new JButton("Show Station"); 
@@ -92,8 +91,7 @@ public class GUI extends JFrame implements ActionListener{
 		textField2 = new JTextField(4); 
 
 		//JList 
-
-		frame.setLayout(new GridLayout());
+		frame.setLayout(new GridLayout(4, 2));
 
 		Object[] alphaStations = guiTreeSet.toArray();
 
@@ -101,31 +99,27 @@ public class GUI extends JFrame implements ActionListener{
 
 		text5 = new JLabel("Compre w/ new"); 
 
-		p.add(text1); 
-		p.add(textField1); 
-		p.add(slider); 
-		p.add(text2); 
-		p.add(button1); 
-		p.add(entry); 
-		p.add(hD); 
-		p.add(button2);
-		p.add(text3);
-		p.add(text4); 
-		p.add(button3);
-		p.add(textField2);
-		p.add(cBox1); 
-		p.add(text5); 
+		//p.add(p1); 
+		p1.add(text1); 
+		p1.add(textField1); 
+		p1.add(slider); 
+		p1.add(text2); 
+		p1.add(button1); 
+		p1.add(entry); 
+		p1.add(hD); 
+		p1.add(button2);
+		p1.add(text3);
+		p1.add(text4); 
+		p1.add(button3);
+		p1.add(textField2);
+		p1.add(cBox1); 
+		p1.add(text5); 
 
-
-
-
-		frame.add(p); 
+		frame.add(p1); 
 		frame.setSize(600, 800);
 		frame.setVisible(true);
 
 	}
-
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
