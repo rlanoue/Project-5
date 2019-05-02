@@ -135,22 +135,31 @@ public class GUI extends JFrame {
 		enterHDtextField.setEditable(false);
 		HD = new JTextArea(1, 10);
 
-		//area of where the stations are listed 
+		//area of where the stations are listed - non editable 
 		showStations = new JButton("Show Station"); 
 		stationList = new JTextArea(20, 15); 
 		stationList.setEditable(false);
 
+		//Scroller for the showStations area to see all the stations under the same
 		JScrollPane scroller = new JScrollPane();
 
+		
 		showStations.addActionListener(new ActionListener() {
+			/**
+			 * action listener that shows the number of stations that 
+			 * match the slider for the particular station chosen
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				stationList.setText(""); 
 
 				String newStation = "";
-				try {
+				try 
+				{
 					ob.findNodeDistance((String) cBox1.getSelectedItem());
-				} catch (IOException e1) {
+				}
+				catch (IOException e1) 
+				{
 					e1.printStackTrace();
 				}
 				TreeSet<String> newTrees = ob.getStations(); 
@@ -161,12 +170,15 @@ public class GUI extends JFrame {
 			}
 		});
 
+		//button to calculate the hamming distance
 		calcHD = new JButton("Calculate HD"); 
 
+		//label attached the combo box of all the stations 
 		compareWith = new JLabel("Compare with:"); 
 
+		//layout manager for the frame
 		frame.setLayout(new GridLayout(0, 2));
-
+		//main panels that other panels are other 
 		p0.setLayout(new GridLayout(7, 0));
 
 		p1.setLayout(new GridLayout(0, 2));
@@ -244,75 +256,75 @@ public class GUI extends JFrame {
 					}
 
 				}
-				
+
 			}
 		});
 
-					timeD = new JLabel("The current time is: ");
-					timeL = new JTextField(timer); 
-					timeColor = new JButton("Change the color"); 
-					timeColor.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							if(inZone == false)
-							{
-								p8.setBackground(Color.LIGHT_GRAY);
-							}
-							else {
-								p8.setBackground(Color.YELLOW);
-							}
-						}
+		timeD = new JLabel("The current time is: ");
+		timeL = new JTextField(timer); 
+		timeColor = new JButton("Change the color"); 
+		timeColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(inZone == false)
+				{
+					p8.setBackground(Color.LIGHT_GRAY);
+				}
+				else {
+					p8.setBackground(Color.YELLOW);
+				}
+			}
 
-					});
+		});
 
-					p1.add(enterHD); 
-					p1.add(enterHDtextField); 
+		p1.add(enterHD); 
+		p1.add(enterHDtextField); 
 
-					p2.add(slider); 
+		p2.add(slider); 
 
-					p3.add(showStations); 
+		p3.add(showStations); 
 
-					p4.add(stationList); 
-					scroller.setViewportView(stationList);
-					p4.add(scroller);
-					p5.add(compareWith);
+		p4.add(stationList); 
+		scroller.setViewportView(stationList);
+		p4.add(scroller);
+		p5.add(compareWith);
 
-					p5.add(cBox1); 
+		p5.add(cBox1); 
 
-					p6.add(calcHD);
-					p6.add(blank); 
-					p6.add(l0); 
-					p6.add(d0);
-					p6.add(l1); 
-					p6.add(d1); 
-					p6.add(l2); 
-					p6.add(d2); 
-					p6.add(l3); 
-					p6.add(d3); 
-					p6.add(l4); 
-					p6.add(d4); 
+		p6.add(calcHD);
+		p6.add(blank); 
+		p6.add(l0); 
+		p6.add(d0);
+		p6.add(l1); 
+		p6.add(d1); 
+		p6.add(l2); 
+		p6.add(d2); 
+		p6.add(l3); 
+		p6.add(d3); 
+		p6.add(l4); 
+		p6.add(d4); 
 
-					p7.add(add); 
-					p7.add(addee); 
-					p7.add(addingIssue); 
-					addingIssue.setVisible(false); 
+		p7.add(add); 
+		p7.add(addee); 
+		p7.add(addingIssue); 
+		addingIssue.setVisible(false); 
 
-					p0.add(p1); 
-					p0.add(p2);
-					p0.add(p3); 
-					p0.add(p4); 
-					p0.add(p5); 
-					p0.add(p6); 
-					p0.add(p7); 
+		p0.add(p1); 
+		p0.add(p2);
+		p0.add(p3); 
+		p0.add(p4); 
+		p0.add(p5); 
+		p0.add(p6); 
+		p0.add(p7); 
 
-					p8.add(timeD); 
-					p8.add(timeL);
-					p8.add(timeColor); 
+		p8.add(timeD); 
+		p8.add(timeL);
+		p8.add(timeColor); 
 
 
-					frame.add(p0);
-					frame.add(p8); 
-					frame.setSize(600, 800);
-					frame.setVisible(true);
+		frame.add(p0);
+		frame.add(p8); 
+		frame.setSize(600, 800);
+		frame.setVisible(true);
 	}
 
 }
