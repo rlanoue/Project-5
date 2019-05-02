@@ -44,17 +44,14 @@ import javax.swing.event.ChangeListener;
  */
 public class GUI extends JFrame {
 	static JFrame frame; 
-	static JLabel text1;
-	static JTextField textField1;
+	static JLabel enterHD;
+	static JTextField enterHDtextField;
 	static JSlider slider; 
-	static JLabel text2;
-	static JButton button1; 
-	static JTextArea entry;
-	static JTextArea hD; 
-	static JButton button2; 
-	static JLabel text3;
-	static JButton button3;
-	static JTextField textField2; 
+	static JButton showStations; 
+	static JTextArea stationList;
+	static JTextArea HD; 
+	static JButton calcHD; 
+	static JLabel compareWith;
 	static JComboBox<String> cBox1; 	
 	static JLabel l0; 
 	static JTextField d0; 
@@ -123,31 +120,31 @@ public class GUI extends JFrame {
 		slider.setPaintTrack(true);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
-
-		text1 = new JLabel("Enter Hamming Dist:"); 
+		//Shows the words that show what the 
+		enterHD = new JLabel("Enter Hamming Dist:"); 
 		slider.addChangeListener(new ChangeListener() {
-
 			public void stateChanged(ChangeEvent e){
 				String state = ""; 
 				state += slider.getValue(); 
-				textField1.setText(state); 
+				enterHDtextField.setText(state); 
 			}
 		}); 
 
-		textField1 = new JTextField();
-		textField1.setEditable(false);
-		hD = new JTextArea(1, 10);
+		//
+		enterHDtextField = new JTextField();
+		enterHDtextField.setEditable(false);
+		HD = new JTextArea(1, 10);
 
-		button1 = new JButton("Show Station"); 
-		entry = new JTextArea(20, 15); 
-		entry.setEditable(false);
+		showStations = new JButton("Show Station"); 
+		stationList = new JTextArea(20, 15); 
+		stationList.setEditable(false);
 
 		JScrollPane scroller = new JScrollPane();
 
-		button1.addActionListener(new ActionListener() {
+		showStations.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				entry.setText(""); 
+				stationList.setText(""); 
 
 				String newStation = "";
 				try {
@@ -159,15 +156,13 @@ public class GUI extends JFrame {
 				for(String a : newTrees) {
 					newStation += a + "\n"; 
 				}
-				entry.setText(newStation);
+				stationList.setText(newStation);
 			}
 		});
 
-		button2 = new JButton("Calculate HD"); 
+		calcHD = new JButton("Calculate HD"); 
 
-		text3 = new JLabel("Compare with:"); 
-
-		textField2 = new JTextField(4); 
+		compareWith = new JLabel("Compare with:"); 
 
 		frame.setLayout(new GridLayout(0, 2));
 
@@ -204,7 +199,7 @@ public class GUI extends JFrame {
 		d4.setEditable(false);
 
 
-		button2.addActionListener(new ActionListener() {
+		calcHD.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -268,21 +263,21 @@ public class GUI extends JFrame {
 
 					});
 
-					p1.add(text1); 
-					p1.add(textField1); 
+					p1.add(enterHD); 
+					p1.add(enterHDtextField); 
 
 					p2.add(slider); 
 
-					p3.add(button1); 
+					p3.add(showStations); 
 
-					p4.add(entry); 
-					scroller.setViewportView(entry);
+					p4.add(stationList); 
+					scroller.setViewportView(stationList);
 					p4.add(scroller);
-					p5.add(text3);
+					p5.add(compareWith);
 
 					p5.add(cBox1); 
 
-					p6.add(button2);
+					p6.add(calcHD);
 					p6.add(blank); 
 					p6.add(l0); 
 					p6.add(d0);
