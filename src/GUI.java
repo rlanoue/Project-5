@@ -273,10 +273,15 @@ public class GUI extends JFrame {
 			}
 		});
 
+		//Creative panel - clock and color change
 		timeD = new JLabel("The current time is: ");
 		timeL = new JTextField(timer); 
 		timeColor = new JButton("Change the color"); 
 		timeColor.addActionListener(new ActionListener() {
+			/**
+			 * action listener to see if the aforementioned boolean is true or false
+			 * and thus change the color if applicable
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if(inZone == false)
 				{
@@ -289,6 +294,7 @@ public class GUI extends JFrame {
 
 		});
 
+		//adds all the components to the panels
 		p1.add(enterHD); 
 		p1.add(enterHDtextField); 
 
@@ -319,6 +325,7 @@ public class GUI extends JFrame {
 		p7.add(add); 
 		p7.add(addee); 
 		p7.add(addingIssue); 
+		//error message is hidden until shown later if thrown 
 		addingIssue.setVisible(false); 
 
 		p0.add(p1); 
@@ -333,11 +340,10 @@ public class GUI extends JFrame {
 		p8.add(timeL);
 		p8.add(timeColor); 
 
-
+		//adds the main two panels to the frame and sets visibility to true 
 		frame.add(p0);
 		frame.add(p8); 
 		frame.setSize(600, 800);
 		frame.setVisible(true);
 	}
-
 }
