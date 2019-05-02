@@ -63,7 +63,11 @@ public class GUI extends JFrame implements ActionListener{
 	static JTextField d3; 
 	static JLabel l4; 
 	static JTextField d4; 
-
+	
+	static JLabel blank; 
+	
+	static JButton add; 
+	static JTextField addee; 
 
 	public static void main(String[] args) throws IOException
 	{
@@ -116,21 +120,23 @@ public class GUI extends JFrame implements ActionListener{
 
 		text4 = new JLabel("REPLACE ME WITH STATION NAME"); 
 		button3 = new JButton("Add Station"); 
+		
 		ActionListener addStation = new GUI(); 
 		button3.addActionListener(addStation);
+		
 		textField2 = new JTextField(4); 
 
 		//JList 
 		frame.setLayout(new GridLayout(0, 2));
-		p0.setLayout(new GridLayout(6, 0));
+		p0.setLayout(new GridLayout(7, 0));
 
 		p1.setLayout(new GridLayout(0, 2));
 		p2.setLayout(new GridLayout());
 		p3.setLayout(new GridLayout());
 		p4.setLayout(new GridLayout());
 		p5.setLayout(new GridLayout());
-		p6.setLayout(new GridLayout());
-		p7.setLayout(new GridLayout(2, 0));
+		p6.setLayout(new GridLayout(7, 2));
+	p7.setLayout(new GridLayout(1, 2));
 
 		Object[] alphaStations = guiTreeSet.toArray();
 
@@ -140,40 +146,55 @@ public class GUI extends JFrame implements ActionListener{
 		text5 = new JLabel("Compre w/ new");
 
 		l0 = new JLabel("Distance 0");  
-		d0 = new JTextField();  
+		d0 = new JTextField();
+		d0.setEditable(false);
 		l1  = new JLabel("Distance 1");  
 		d1 = new JTextField();  
+		d1.setEditable(false);
 		l2  = new JLabel("Distance 2");  
 		d2 = new JTextField();  
+		d2.setEditable(false);
 		l3  = new JLabel("Distance 3");  
 		d3 = new JTextField();
+		d3.setEditable(false);
 		l4  = new JLabel("Distance 4");  
-		d4 = new JTextField();  
+		d4 = new JTextField();
+		d4.setEditable(false);
 
+		blank = new JLabel(); 
+		
+		
+		add = new JButton("Add Station");  
+		addee = new JTextField(""); 
+		
 		p1.add(text1); 
 		p1.add(textField1); 
+		
 		p2.add(slider); 
-		//p2.add(text2); 
+		
 		p3.add(button1); 
+		
 		p4.add(entry); 
-		//p6.add(hD); 
-		p6.add(button2);
+	
 		p5.add(text3);
-		//p7.add(text4); 
-		//p7.add(button3);
-		//p7.add(textField2);
+		
 		p5.add(cBox1); 
-		//p7.add(text5);
-		p7.add(l0); 
-		p7.add(d0);
-		//p7.add(l1); 
-		//p7.add(d1); 
-//		p7.add(l2); 
-//		p7.add(d2); 
-//		p7.add(l3); 
-//		p7.add(d3); 
-//		p7.add(l4); 
-//		p7.add(d4); 
+		
+		p6.add(button2);
+		p6.add(blank); 
+		p6.add(l0); 
+		p6.add(d0);
+		p6.add(l1); 
+		p6.add(d1); 
+		p6.add(l2); 
+		p6.add(d2); 
+		p6.add(l3); 
+		p6.add(d3); 
+		p6.add(l4); 
+		p6.add(d4); 
+		
+		p7.add(add); 
+		p7.add(addee); 
 
 		p0.add(p1); 
 		p0.add(p2);
@@ -181,7 +202,7 @@ public class GUI extends JFrame implements ActionListener{
 		p0.add(p4); 
 		p0.add(p5); 
 		p0.add(p6); 
-		//p0.add(p7); 
+		p0.add(p7); 
 
 		frame.add(p0);
 		//frame.add(p2); 
