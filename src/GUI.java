@@ -164,7 +164,7 @@ public class GUI extends JFrame {
 				}
 				TreeSet<String> newTrees = ob.getStations(); 
 				for(String a : newTrees) {
-					newStation += a + "\n"; 
+					newStation += a + "\n"; //adds a new line after each loop through to keep formatting
 				}
 				stationList.setText(newStation);
 			}
