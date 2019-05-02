@@ -76,11 +76,11 @@ public class GUI extends JFrame {
 
 	static JButton timeColor; 
 
-/**
- * Is the main block of code that displays the panel and frame 
- * @param args
- * @throws IOException
- */
+	/**
+	 * Is the main block of code that displays the panel and frame 
+	 * @param args
+	 * @throws IOException
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void main(String[] args) throws IOException
 	{
@@ -101,9 +101,11 @@ public class GUI extends JFrame {
 		//reads the file
 		ob.read("Mesonet.txt");
 
+		//reads the other class' treeset to this classes treeset 
 		TreeSet<String> guiTreeSet = new TreeSet<String>(); 
 		guiTreeSet = ob.getTreeSet(); 
 
+		//adds the frame and panels to the gui
 		frame = new JFrame("Hamming Distance");
 		JPanel p0 = new JPanel(); 
 		JPanel p1 = new JPanel(); 
@@ -115,6 +117,7 @@ public class GUI extends JFrame {
 		JPanel p7 = new JPanel(); 
 		JPanel p8 = new JPanel(); 
 
+		//creates the slider and displays the numbers and 
 		slider = new JSlider(1, 4, 2); 
 		slider.setMajorTickSpacing(1);
 		slider.setPaintTrack(true);
@@ -229,85 +232,91 @@ public class GUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e){
 				if(addee.getText().length() == 4)
-				{
-					String newStation = ""; 
-					newStation += addee.getText(); 
-					cBox1.addItem(newStation.toUpperCase());
-					p7.repaint();
+				{ 
+					String newStation = addee.getText();
+					TreeSet<String> ilwr = ob.getTreeStations();
+					if(!(ilwr.contains(addee.getText()))){
+						ilwr.add(newStation); 
+						//ilwr.set.getTreeStations();  
+						cBox1.addItem(newStation.toUpperCase());
+						//p7.repaint();
+					}
+					else 
+					{
+						addingIssue.setVisible(true);
+						p7.repaint();
+					}
+
 				}
-				else 
-				{
-					addingIssue.setVisible(true);
-					p7.repaint();
-				}
+				
 			}
 		});
 
-		timeD = new JLabel("The current time is: ");
-		timeL = new JTextField(timer); 
-		timeColor = new JButton("Change the color"); 
-		timeColor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(inZone == false)
-				{
-					p8.setBackground(Color.LIGHT_GRAY);
-				}
-				else {
-					p8.setBackground(Color.YELLOW);
-				}
-			}
+					timeD = new JLabel("The current time is: ");
+					timeL = new JTextField(timer); 
+					timeColor = new JButton("Change the color"); 
+					timeColor.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(inZone == false)
+							{
+								p8.setBackground(Color.LIGHT_GRAY);
+							}
+							else {
+								p8.setBackground(Color.YELLOW);
+							}
+						}
 
-		});
+					});
 
-		p1.add(text1); 
-		p1.add(textField1); 
+					p1.add(text1); 
+					p1.add(textField1); 
 
-		p2.add(slider); 
+					p2.add(slider); 
 
-		p3.add(button1); 
+					p3.add(button1); 
 
-		p4.add(entry); 
-		scroller.setViewportView(entry);
-		p4.add(scroller);
-		p5.add(text3);
+					p4.add(entry); 
+					scroller.setViewportView(entry);
+					p4.add(scroller);
+					p5.add(text3);
 
-		p5.add(cBox1); 
+					p5.add(cBox1); 
 
-		p6.add(button2);
-		p6.add(blank); 
-		p6.add(l0); 
-		p6.add(d0);
-		p6.add(l1); 
-		p6.add(d1); 
-		p6.add(l2); 
-		p6.add(d2); 
-		p6.add(l3); 
-		p6.add(d3); 
-		p6.add(l4); 
-		p6.add(d4); 
+					p6.add(button2);
+					p6.add(blank); 
+					p6.add(l0); 
+					p6.add(d0);
+					p6.add(l1); 
+					p6.add(d1); 
+					p6.add(l2); 
+					p6.add(d2); 
+					p6.add(l3); 
+					p6.add(d3); 
+					p6.add(l4); 
+					p6.add(d4); 
 
-		p7.add(add); 
-		p7.add(addee); 
-		p7.add(addingIssue); 
-		addingIssue.setVisible(false); 
+					p7.add(add); 
+					p7.add(addee); 
+					p7.add(addingIssue); 
+					addingIssue.setVisible(false); 
 
-		p0.add(p1); 
-		p0.add(p2);
-		p0.add(p3); 
-		p0.add(p4); 
-		p0.add(p5); 
-		p0.add(p6); 
-		p0.add(p7); 
+					p0.add(p1); 
+					p0.add(p2);
+					p0.add(p3); 
+					p0.add(p4); 
+					p0.add(p5); 
+					p0.add(p6); 
+					p0.add(p7); 
 
-		p8.add(timeD); 
-		p8.add(timeL);
-		p8.add(timeColor); 
+					p8.add(timeD); 
+					p8.add(timeL);
+					p8.add(timeColor); 
 
 
-		frame.add(p0);
-		frame.add(p8); 
-		frame.setSize(600, 800);
-		frame.setVisible(true);
+					frame.add(p0);
+					frame.add(p8); 
+					frame.setSize(600, 800);
+					frame.setVisible(true);
 	}
 
 }
