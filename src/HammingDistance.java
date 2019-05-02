@@ -52,41 +52,52 @@ public class HammingDistance {
 		return hammingDistance;
 	}
 
-	int[] node1Distances = new int[4];
+	private int[] node1Distances;  
 	private TreeSet<String> newTree; 
 
 	public void findNodeDistance(String station1) throws IOException
 	{
+		node1Distances = new int[5];
 		newTree = new TreeSet<String>(); 
 
 		int hammingDistanceNode1 = 0;	
 
 		for (Iterator<String> given = treeStation.iterator(); given.hasNext();)
 		{
-			hammingDistanceNode1 = findHammingDistance(station1, given.next());
+			String a = given.next();
+			hammingDistanceNode1 = findHammingDistance(station1, a);
 			{
-				if (hammingDistanceNode1 == 1)
+				if (hammingDistanceNode1 == 0)
 				{
-					node1Distances[0]++;
+					node1Distances[0] = 1;
 				}
-				else if (hammingDistanceNode1 == 2)
+				
+				else if (hammingDistanceNode1 == 1)
 				{
 					node1Distances[1]++;
 				}
-				else if (hammingDistanceNode1 == 3)
+				else if (hammingDistanceNode1 == 2)
 				{
 					node1Distances[2]++;
 				}
+				else if (hammingDistanceNode1 == 3)
+				{
+					node1Distances[3]++;
+				}
 				else if (hammingDistanceNode1 == 4) 
 				{
-					node1Distances[3]++; 
+					node1Distances[4]++; 
 				}
 			}
-			addGUIHamm(given.next(), station1);
+			addGUIHamm(a, station1);
 		}
 	}
 
 	public TreeSet<String> getStations(){
 		return this.newTree; 
+	}
+	
+	public int[] getNodes(){
+		return this.node1Distances; 
 	}
 }

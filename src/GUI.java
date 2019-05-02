@@ -44,7 +44,6 @@ public class GUI extends JFrame {
 	static JLabel text3;
 	static JButton button3;
 	static JTextField textField2; 
-	static JLabel text5; 
 	static JComboBox<String> cBox1; 	
 	static JLabel l0; 
 	static JTextField d0; 
@@ -126,6 +125,7 @@ public class GUI extends JFrame {
 		});
 
 		button2 = new JButton("Calculate HD"); 
+		
 
 		text3 = new JLabel("Compare with:"); 
 
@@ -147,8 +147,6 @@ public class GUI extends JFrame {
 		cBox1 = new JComboBox(alphaStations); 
 		cBox1.setSize(20, 20);
 
-		text5 = new JLabel("Compre w/ new");
-
 		l0 = new JLabel("Distance 0");  
 		d0 = new JTextField();
 		d0.setEditable(false);
@@ -165,6 +163,27 @@ public class GUI extends JFrame {
 		d4 = new JTextField();
 		d4.setEditable(false);
 
+		
+		button2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ob.findNodeDistance((String) cBox1.getSelectedItem());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				int[] tno = ob.getNodes();
+				d0.setText("" + tno[0]);
+				d1.setText("" + tno[1]);
+				d2.setText("" + tno[2]);
+				d3.setText("" + tno[3]);
+				d4.setText("" + tno[4]);
+		
+			}
+		});
+		
 		blank = new JLabel(); 
 
 		add = new JButton("Add Station");  
