@@ -22,10 +22,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class GUI extends JFrame implements ActionListener{
 	static JFrame frame; 
@@ -55,6 +58,7 @@ public class GUI extends JFrame implements ActionListener{
 	static JLabel blank; 
 	static JButton add; 
 	static JTextField addee; 
+	static JLabel addingIssue; 
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void main(String[] args) throws IOException
@@ -82,6 +86,15 @@ public class GUI extends JFrame implements ActionListener{
 		slider.setPaintLabels(true);
 
 		text1 = new JLabel("Enter Hamming Dist:"); 
+		slider.addChangeListener(new ChangeListener() {
+
+			public void stateChanged(ChangeEvent e){
+				String state = ""; 
+				state += slider.getValue(); 
+				textField1.setText(state); 
+			}
+		}); 
+
 		textField1 = new JTextField();
 		textField1.setEditable(false);
 		hD = new JTextArea(1, 10);
@@ -93,10 +106,23 @@ public class GUI extends JFrame implements ActionListener{
 		button2 = new JButton("Calculate HD"); 
 
 		text3 = new JLabel("Compare with:"); 
-		button3 = new JButton("Add Station"); 
+		button3 = new JButton("Add :) Station"); 
 
-		ActionListener addStation = new GUI(); 
-		button3.addActionListener(addStation);
+		//ActionListener addStation = new GUI(); 
+		button3.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e){
+				cBox1.addItem(text3.getText());
+
+			}
+
+
+		});
+
+
+
+		//(addStation);
+
 
 		textField2 = new JTextField(4); 
 
@@ -138,6 +164,22 @@ public class GUI extends JFrame implements ActionListener{
 
 		add = new JButton("Add Station");  
 		addee = new JTextField(""); 
+		addingIssue = new JLabel("Unable to add");  
+		add.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e){
+				if(addee.getText().length() <= 4)
+				{
+					cBox1.addItem(addee.getText());
+					p7.repaint();
+				}
+				else 
+				{
+					addingIssue.setVisible(true);
+					p7.repaint();
+				}
+			}
+		});
 
 		p1.add(text1); 
 		p1.add(textField1); 
@@ -167,6 +209,8 @@ public class GUI extends JFrame implements ActionListener{
 
 		p7.add(add); 
 		p7.add(addee); 
+		p7.add(addingIssue); 
+		addingIssue.setVisible(false); 
 
 		p0.add(p1); 
 		p0.add(p2);
@@ -182,11 +226,13 @@ public class GUI extends JFrame implements ActionListener{
 
 	}
 
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		String s = e.getActionCommand(); 
-//		if (s.contentEquals("HERE")) {
-//			text3.setText(entry.getText());
-//		}
+
+
+	//	@Override
+	//	public void actionPerformed(ActionEvent e) {
+	//		String s = e.getActionCommand(); 
+	//		if (s.contentEquals("HERE")) {
+	//			text3.setText(entry.getText());
+	//		}
 	//}
 }
