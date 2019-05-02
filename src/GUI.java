@@ -37,6 +37,11 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * 
+ * @author LanoueAdmin
+ * All the static items to be added to the frame and panels 
+ */
 public class GUI extends JFrame {
 	static JFrame frame; 
 	static JLabel text1;
@@ -71,25 +76,30 @@ public class GUI extends JFrame {
 
 	static JButton timeColor; 
 
-
+/**
+ * Is the main block of code that displays the panel and frame 
+ * @param args
+ * @throws IOException
+ */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void main(String[] args) throws IOException
 	{
+		//Adds a clock to the creative side of the project
 		ZoneId timeZone = ZoneId.of("America/Chicago"); 
 		Clock clock = Clock.tickMinutes(timeZone); 
 		ZonedDateTime time = clock.instant().atZone(clock.getZone()); 
 		String timer = ""; 
 		timer += time; 
-
+		//checks to see if the current time is between a certain time frame
+		//if between 8am and 5pm, the background can be set to yellow 
+		//if between 5pm and 8am, the background will be set to grey
 		LocalTime target = LocalTime.parse("11:59:00");
 		Boolean inZone = (target.isBefore(LocalTime.parse("08:00:00")) && 
 				target.isAfter(LocalTime.parse("17:00:00"))); 
-
-
+		//object from the hamming distance class that allows things to be called from other class
 		HammingDistance ob = new HammingDistance(); 
+		//reads the file
 		ob.read("Mesonet.txt");
-
-
 
 		TreeSet<String> guiTreeSet = new TreeSet<String>(); 
 		guiTreeSet = ob.getTreeSet(); 
