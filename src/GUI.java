@@ -130,11 +130,12 @@ public class GUI extends JFrame {
 			}
 		}); 
 
-		//
+		//textField for the slider's number to go
 		enterHDtextField = new JTextField();
 		enterHDtextField.setEditable(false);
 		HD = new JTextArea(1, 10);
 
+		//area of where the stations are listed 
 		showStations = new JButton("Show Station"); 
 		stationList = new JTextArea(20, 15); 
 		stationList.setEditable(false);
@@ -209,12 +210,12 @@ public class GUI extends JFrame {
 					i.printStackTrace();
 				}
 
-				int[] tno = ob.getNodes();
-				d0.setText("" + tno[0]);
-				d1.setText("" + tno[1]);
-				d2.setText("" + tno[2]);
-				d3.setText("" + tno[3]);
-				d4.setText("" + tno[4]);
+				int[] nodeActionListener = ob.getNodes();
+				d0.setText("" + nodeActionListener[0]);
+				d1.setText("" + nodeActionListener[1]);
+				d2.setText("" + nodeActionListener[2]);
+				d3.setText("" + nodeActionListener[3]);
+				d4.setText("" + nodeActionListener[4]);
 			}
 		});
 
@@ -229,9 +230,9 @@ public class GUI extends JFrame {
 				if(addee.getText().length() == 4)
 				{ 
 					String newStation = addee.getText();
-					TreeSet<String> ilwr = ob.getTreeStations();
-					if(!(ilwr.contains(addee.getText()))){
-						ilwr.add(newStation); 
+					TreeSet<String> addTreeSet = ob.getTreeStations();
+					if(!(addTreeSet.contains(addee.getText()))){
+						addTreeSet.add(newStation); 
 						//ilwr.set.getTreeStations();  
 						cBox1.addItem(newStation.toUpperCase());
 						//p7.repaint();
