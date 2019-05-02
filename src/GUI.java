@@ -283,7 +283,7 @@ public class GUI extends JFrame {
 			 * and thus change the color if applicable
 			 */
 			public void actionPerformed(ActionEvent e) {
-				if(inZone == false)
+				if(inZone == true)
 				{
 					p8.setBackground(Color.LIGHT_GRAY);
 				}
