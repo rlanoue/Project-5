@@ -24,13 +24,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class GUI extends JFrame implements ActionListener{
+public class GUI extends JFrame {
 	static JFrame frame; 
 	static JLabel text1;
 	static JTextField textField1;
@@ -79,7 +80,7 @@ public class GUI extends JFrame implements ActionListener{
 		JPanel p6 = new JPanel(); 
 		JPanel p7 = new JPanel(); 
 
-		slider = new JSlider(0, 4, 2); 
+		slider = new JSlider(1, 4, 2); 
 		slider.setMajorTickSpacing(1);
 		slider.setPaintTrack(true);
 		slider.setPaintTicks(true);
@@ -103,26 +104,30 @@ public class GUI extends JFrame implements ActionListener{
 		entry = new JTextArea(20, 15); 
 		entry.setEditable(false);
 
+		JScrollPane scroller = new JScrollPane();
+
+		button1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				entry.setText(""); 
+
+				String newStation = "";
+				try {
+					ob.findNodeDistance((String) cBox1.getSelectedItem());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				TreeSet<String> newTrees = ob.getStations(); 
+				for(String a : newTrees) {
+					newStation += a + "\n"; 
+				}
+				entry.setText(newStation);
+			}
+		});
+
 		button2 = new JButton("Calculate HD"); 
 
 		text3 = new JLabel("Compare with:"); 
-		button3 = new JButton("Add :) Station"); 
-
-		//ActionListener addStation = new GUI(); 
-		button3.addActionListener(new ActionListener(){
-
-			public void actionPerformed(ActionEvent e){
-				cBox1.addItem(text3.getText());
-
-			}
-
-
-		});
-
-
-
-		//(addStation);
-
 
 		textField2 = new JTextField(4); 
 
@@ -168,9 +173,11 @@ public class GUI extends JFrame implements ActionListener{
 		add.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e){
-				if(addee.getText().length() <= 4)
+				if(addee.getText().length() == 4)
 				{
-					cBox1.addItem(addee.getText());
+					String newStation = ""; 
+					newStation += addee.getText(); 
+					cBox1.addItem(newStation.toUpperCase());
 					p7.repaint();
 				}
 				else 
@@ -189,7 +196,8 @@ public class GUI extends JFrame implements ActionListener{
 		p3.add(button1); 
 
 		p4.add(entry); 
-
+		scroller.setViewportView(entry);
+		p4.add(scroller);
 		p5.add(text3);
 
 		p5.add(cBox1); 
@@ -223,16 +231,5 @@ public class GUI extends JFrame implements ActionListener{
 		frame.add(p0);
 		frame.setSize(600, 800);
 		frame.setVisible(true);
-
 	}
-
-
-
-	//	@Override
-	//	public void actionPerformed(ActionEvent e) {
-	//		String s = e.getActionCommand(); 
-	//		if (s.contentEquals("HERE")) {
-	//			text3.setText(entry.getText());
-	//		}
-	//}
 }
