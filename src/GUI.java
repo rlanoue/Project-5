@@ -15,6 +15,12 @@ import java.awt.event.ItemListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.Timestamp;
+import java.time.Clock;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Timer;
 import java.util.TreeSet;
 
 import javax.swing.ComboBoxModel;
@@ -60,11 +66,30 @@ public class GUI extends JFrame {
 	static JTextField addee; 
 	static JLabel addingIssue; 
 
+	static JLabel timeD;
+	static JTextField timeL;
+
+	static JButton timeColor; 
+
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void main(String[] args) throws IOException
 	{
+		ZoneId timeZone = ZoneId.of("America/Chicago"); 
+		Clock clock = Clock.tickMinutes(timeZone); 
+		ZonedDateTime time = clock.instant().atZone(clock.getZone()); 
+		String timer = ""; 
+		timer += time; 
+
+		LocalTime target = LocalTime.parse("11:59:00");
+		Boolean inZone = (target.isBefore(LocalTime.parse("08:00:00")) && 
+				target.isAfter(LocalTime.parse("17:00:00"))); 
+
+
 		HammingDistance ob = new HammingDistance(); 
 		ob.read("Mesonet.txt");
+
+
 
 		TreeSet<String> guiTreeSet = new TreeSet<String>(); 
 		guiTreeSet = ob.getTreeSet(); 
@@ -78,6 +103,7 @@ public class GUI extends JFrame {
 		JPanel p5 = new JPanel(); 
 		JPanel p6 = new JPanel(); 
 		JPanel p7 = new JPanel(); 
+		JPanel p8 = new JPanel(); 
 
 		slider = new JSlider(1, 4, 2); 
 		slider.setMajorTickSpacing(1);
@@ -125,13 +151,13 @@ public class GUI extends JFrame {
 		});
 
 		button2 = new JButton("Calculate HD"); 
-		
 
 		text3 = new JLabel("Compare with:"); 
 
 		textField2 = new JTextField(4); 
 
 		frame.setLayout(new GridLayout(0, 2));
+
 		p0.setLayout(new GridLayout(7, 0));
 
 		p1.setLayout(new GridLayout(0, 2));
@@ -141,6 +167,7 @@ public class GUI extends JFrame {
 		p5.setLayout(new GridLayout());
 		p6.setLayout(new GridLayout(7, 2));
 		p7.setLayout(new GridLayout(1, 2));
+		p8.setLayout(new GridLayout(0, 2)); 
 
 		Object[] alphaStations = guiTreeSet.toArray();
 
@@ -163,27 +190,26 @@ public class GUI extends JFrame {
 		d4 = new JTextField();
 		d4.setEditable(false);
 
-		
+
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ob.findNodeDistance((String) cBox1.getSelectedItem());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} 
+				catch (IOException i) {
+					i.printStackTrace();
 				}
-				
+
 				int[] tno = ob.getNodes();
 				d0.setText("" + tno[0]);
 				d1.setText("" + tno[1]);
 				d2.setText("" + tno[2]);
 				d3.setText("" + tno[3]);
 				d4.setText("" + tno[4]);
-		
 			}
 		});
-		
+
 		blank = new JLabel(); 
 
 		add = new JButton("Add Station");  
@@ -205,6 +231,22 @@ public class GUI extends JFrame {
 					p7.repaint();
 				}
 			}
+		});
+
+		timeD = new JLabel("The current time is: ");
+		timeL = new JTextField(timer); 
+		timeColor = new JButton("Change the color"); 
+		timeColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(inZone == false)
+				{
+					p8.setBackground(Color.LIGHT_GRAY);
+				}
+				else {
+					p8.setBackground(Color.YELLOW);
+				}
+			}
+
 		});
 
 		p1.add(text1); 
@@ -247,8 +289,15 @@ public class GUI extends JFrame {
 		p0.add(p6); 
 		p0.add(p7); 
 
+		p8.add(timeD); 
+		p8.add(timeL);
+		p8.add(timeColor); 
+
+
 		frame.add(p0);
+		frame.add(p8); 
 		frame.setSize(600, 800);
 		frame.setVisible(true);
 	}
+
 }

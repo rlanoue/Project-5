@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 public class HammingDistance {
 
-	private static TreeSet<String> treeStation = new TreeSet<String>(); 
+	public TreeSet<String> treeStation = new TreeSet<String>(); 
 	public static void main(String[] args) {
 	}
 
@@ -99,5 +99,9 @@ public class HammingDistance {
 	
 	public int[] getNodes(){
 		return this.node1Distances; 
+	}
+	
+	public TreeSet<String> getTreeStations(){
+		return this.treeStation; 
 	}
 }
