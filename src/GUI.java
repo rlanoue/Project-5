@@ -54,7 +54,7 @@ public class GUI extends JFrame {
 	static JLabel compareWith;
 	static JComboBox<String> cBox1; 	
 	static JLabel l0; 
-	static JTextField d0; 
+	static JTextField d0;
 	static JLabel l1;
 	static JTextField d1; 
 	static JLabel l2;
