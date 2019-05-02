@@ -181,6 +181,9 @@ public class GUI extends JFrame {
 		//main panels that other panels are other 
 		p0.setLayout(new GridLayout(7, 0));
 
+		//p1 is set to be 2 rows and 0 columns 
+		//others are blank becasue there is only one thing to add 
+		//p6/7/8 are specific based on the things added to that panel later
 		p1.setLayout(new GridLayout(0, 2));
 		p2.setLayout(new GridLayout());
 		p3.setLayout(new GridLayout());
@@ -190,11 +193,15 @@ public class GUI extends JFrame {
 		p7.setLayout(new GridLayout(1, 2));
 		p8.setLayout(new GridLayout(0, 2)); 
 
+		//changes the treeset values to an array and then makes them a 
+		//general object array
 		Object[] alphaStations = guiTreeSet.toArray();
 
+		//comboBox using the object array 
 		cBox1 = new JComboBox(alphaStations); 
 		cBox1.setSize(20, 20);
 
+		//labels and blanks for the distances
 		l0 = new JLabel("Distance 0");  
 		d0 = new JTextField();
 		d0.setEditable(false);
@@ -211,7 +218,7 @@ public class GUI extends JFrame {
 		d4 = new JTextField();
 		d4.setEditable(false);
 
-
+		//action listener to find the node distance and update the labels and blanks
 		calcHD.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
