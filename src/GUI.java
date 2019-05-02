@@ -166,8 +166,8 @@ public class GUI extends JFrame implements ActionListener{
 		//p7.add(text5);
 		p7.add(l0); 
 		p7.add(d0);
-		p7.add(l1); 
-		p7.add(d1); 
+		//p7.add(l1); 
+		//p7.add(d1); 
 //		p7.add(l2); 
 //		p7.add(d2); 
 //		p7.add(l3); 
@@ -181,7 +181,7 @@ public class GUI extends JFrame implements ActionListener{
 		p0.add(p4); 
 		p0.add(p5); 
 		p0.add(p6); 
-		p0.add(p7); 
+		//p0.add(p7); 
 
 		frame.add(p0);
 		//frame.add(p2); 
