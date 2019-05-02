@@ -221,6 +221,9 @@ public class GUI extends JFrame {
 		//action listener to find the node distance and update the labels and blanks
 		calcHD.addActionListener(new ActionListener() {
 			@Override
+			/**
+			 * action listener for node distance 
+			 */
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ob.findNodeDistance((String) cBox1.getSelectedItem());
@@ -238,32 +241,35 @@ public class GUI extends JFrame {
 			}
 		});
 
+		//adds a blank next to the calculate hd to correct the spacing
 		blank = new JLabel(); 
 
+		//Add Station button and the textfield and an error if unable to add 
 		add = new JButton("Add Station");  
 		addee = new JTextField(""); 
 		addingIssue = new JLabel("Unable to add");  
 		add.addActionListener(new ActionListener(){
-
+			/**
+			 * action listener for adding new station to the list of stations
+			 * if statement to verify the length is correct
+			 * if else to see if it's already contained in list
+			 * throws error if so
+			 */
 			public void actionPerformed(ActionEvent e){
 				if(addee.getText().length() == 4)
 				{ 
 					String newStation = addee.getText();
 					TreeSet<String> addTreeSet = ob.getTreeStations();
 					if(!(addTreeSet.contains(addee.getText()))){
-						addTreeSet.add(newStation); 
-						//ilwr.set.getTreeStations();  
+						addTreeSet.add(newStation);  
 						cBox1.addItem(newStation.toUpperCase());
-						//p7.repaint();
 					}
 					else 
 					{
 						addingIssue.setVisible(true);
 						p7.repaint();
 					}
-
 				}
-
 			}
 		});
 
